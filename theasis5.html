@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#173f35">
+  <title>Theasis 5 | THEASIS</title>
+  <style>
+    :root {
+      --green:#173f35; --green-dark:#102c26; --green-soft:#e8f0ec;
+      --cream:#f7f2e8; --paper:#fffdf8; --ink:#1d2925; --muted:#68736f;
+      --line:rgba(23,63,53,.13); --shadow:0 18px 48px rgba(17,44,38,.13);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+    img{display:block;width:100%} a{color:inherit;text-decoration:none} button{font:inherit}
+    .wrap{width:min(100% - 32px,1180px);margin:auto}
+    .topbar{position:absolute;z-index:20;left:0;right:0;top:0;padding:18px 0;color:#fff}
+    .topbar-inner{display:flex;align-items:center;justify-content:flex-start;gap:14px}
+    .back{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid rgba(255,255,255,.45);border-radius:12px;background:rgba(10,30,25,.24);backdrop-filter:blur(10px);font-weight:800;font-size:.82rem}
+    .hero{min-height:88svh;position:relative;display:flex;align-items:flex-end;color:#fff;background:linear-gradient(180deg,rgba(5,25,21,.05),rgba(5,25,21,.18) 40%,rgba(5,25,21,.88)),url("assets/images/theasis5_hero.webp") center/cover no-repeat}
+    .hero-content{padding:120px 0 44px;max-width:820px}
+    .eyebrow{display:block;margin-bottom:10px;font-size:.72rem;font-weight:900;letter-spacing:.17em;text-transform:uppercase}
+    .hero h1{font-size:clamp(3.6rem,12vw,7rem);line-height:.92;letter-spacing:-.045em;margin:0 0 12px}
+    .hero-sub{font-size:clamp(1.1rem,3vw,1.55rem);font-weight:750;margin:0 0 22px}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 18px;border-radius:12px;font-weight:850}
+    .btn-primary{background:#fff;color:var(--green-dark)} .btn-ghost{border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.10);color:#fff}
+    .facts{position:relative;margin-top:-22px;z-index:5}
+    .facts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;background:#fff;padding:10px;border-radius:20px;box-shadow:var(--shadow)}
+    .fact{padding:14px;border-radius:14px;background:var(--cream);min-height:84px}
+    .fact strong{display:block;color:var(--green-dark);font-size:.95rem;margin-top:5px} .fact span{font-size:1.2rem}
+    .section{padding:78px 0} .section.alt{background:var(--cream)}
+    .section-head{max-width:760px;margin-bottom:28px} .section-head h2{font-size:clamp(2.1rem,6vw,4rem);line-height:1.02;margin:0 0 12px;letter-spacing:-.035em}
+    .section-head p{margin:0;color:var(--muted)} .section-head .eyebrow{color:var(--green);margin-bottom:8px}
+    .intro-grid{display:grid;gap:28px;align-items:center}
+    .intro-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 12px 32px rgba(17,44,38,.07)}
+    .intro-card p{color:var(--muted);font-size:1.02rem;margin:0}
+    .score-box{display:flex;align-items:center;gap:16px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+    .score-num{width:58px;height:58px;display:grid;place-items:center;border-radius:16px 16px 16px 4px;background:var(--green);color:#fff;font-size:1.15rem;font-weight:900}
+    .score-box strong{display:block} .score-box small{color:var(--muted)}
+    .intro-image{overflow:hidden;border-radius:24px;box-shadow:var(--shadow);min-height:360px} .intro-image img{height:100%;min-height:360px;object-fit:cover}
+    .gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .gallery-item{border:0;padding:0;background:none;border-radius:16px;overflow:hidden;min-height:170px;cursor:pointer}
+    .gallery-item img{height:100%;object-fit:cover;transition:transform .3s ease} .gallery-item:hover img{transform:scale(1.025)}
+    .gallery-item.featured{grid-column:1/-1;min-height:310px}
+    .amenities-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .amenity-card{min-height:116px;padding:17px;border:1px solid var(--line);border-radius:18px;background:#fff;display:flex;gap:13px;align-items:flex-start}
+    .amenity-card>span{font-size:1.45rem} .amenity-card strong{display:block;font-size:.88rem;line-height:1.35} .amenity-card small{display:block;color:var(--muted);font-size:.68rem;margin-top:5px}
+    .cta{padding:72px 0;background:var(--green-dark);color:#fff;text-align:center}
+    .cta .wrap{max-width:820px} .cta h2{font-size:clamp(2.2rem,7vw,4.4rem);margin:0 0 12px;line-height:1} .cta p{color:rgba(255,255,255,.72);margin:0 auto 24px;max-width:620px}
+    .cta-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    .sticky{position:fixed;left:10px;right:10px;bottom:10px;z-index:50;display:grid;grid-template-columns:1fr auto;gap:8px;padding:8px;border-radius:16px;background:rgba(16,44,38,.95);backdrop-filter:blur(14px);box-shadow:0 14px 34px rgba(0,0,0,.25)}
+    .sticky a{min-height:46px;border-radius:11px;display:grid;place-items:center;font-weight:900;font-size:.78rem} .sticky .book{background:#fff;color:var(--green-dark)} .sticky .back-mini{padding:0 16px;background:rgba(255,255,255,.12);color:#fff}
+    .lightbox{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(3,12,10,.96);padding:65px 16px 70px}
+    .lightbox.open{display:flex} .lightbox img{max-width:min(1200px,100%);max-height:82vh;object-fit:contain;border-radius:12px}
+    .lb-btn{position:absolute;width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:1.4rem;cursor:pointer}
+    .lb-close{right:16px;top:16px} .lb-prev{left:12px;top:50%;transform:translateY(-50%)} .lb-next{right:12px;top:50%;transform:translateY(-50%)}
+    .lb-count{position:absolute;bottom:22px;color:#fff;font-size:.8rem}
+    @media(min-width:760px){
+      .facts-grid{grid-template-columns:repeat(5,1fr)} .intro-grid{grid-template-columns:.9fr 1.1fr}
+      .gallery-grid{grid-template-columns:2fr 1fr 1fr} .gallery-item.featured{grid-column:auto;grid-row:span 2;min-height:100%}
+      .amenities-grid{grid-template-columns:repeat(4,1fr)} .sticky{display:none}
+      body{padding-bottom:0}
+    }
+    @media(max-width:759px){body{padding-bottom:76px}}
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="back" href="index.html#studios">← <span data-i18n="back">Back to THEASIS</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-content">
+        <span class="eyebrow" data-i18n="heroKicker">THEASIS · NEOS MARMARAS</span>
+        <h1>Theasis 5</h1>
+        <p class="hero-sub" data-i18n="studioLabel">Luxury Studio with Sea View</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="index.html#theasis5-availability" data-i18n="availability">Check availability</a>
+          <a class="btn btn-ghost" href="#gallery" data-i18n="gallery">Gallery</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="facts">
+      <div class="wrap facts-grid">
+        <div class="fact"><span>👥</span><strong data-i18n="guests">Up to 3 guests</strong></div>
+        <div class="fact"><span>🌊</span><strong data-i18n="sea">Sea view</strong></div>
+        <div class="fact"><span>🌅</span><strong data-i18n="terrace">Private outdoor space</strong></div>
+        <div class="fact"><span>📶</span><strong data-i18n="wifi">Free Wi-Fi</strong></div>
+        <div class="fact"><span>🅿️</span><strong data-i18n="parking">Free parking</strong></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap intro-grid">
+        <div class="intro-card">
+          <span class="eyebrow" data-i18n="introKicker">THE STUDIO</span>
+          <h2 data-i18n="introTitle">A calm base above Neos Marmaras</h2>
+          <p id="studioCopy">A stylish sea-view studio for up to three guests, with a comfortable sleeping area, sofa bed, kitchenette, private bathroom and terrace. Quiet, bright and practical, with free parking, Wi-Fi and allergy-friendly features.</p>
+          <div class="score-box">
+            <div class="score-num">10</div>
+            <div><strong data-i18n="score">Facilities review score</strong><small>Booking.com</small></div>
+          </div>
+        </div>
+        <div class="intro-image"><img src="assets/images/theasis5_room.webp" alt="Theasis 5 interior"></div>
+      </div>
+    </section>
+
+    <section class="section alt" id="gallery">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="galleryKicker">THE SPACE</span>
+          <h2 data-i18n="galleryTitle">See the studio in detail</h2>
+          <p data-i18n="galleryText">Open any photo for a larger view.</p>
+        </div>
+        <div class="gallery-grid">
+          <button class="gallery-item featured" data-index="0" type="button">
+            <img src="assets/images/theasis5_hero.webp" alt="Theasis 5 photo 1">
+          </button>
+          <button class="gallery-item" data-index="1" type="button">
+            <img src="assets/images/theasis5_room.webp" alt="Theasis 5 photo 2">
+          </button>
+          <button class="gallery-item" data-index="2" type="button">
+            <img src="assets/images/theasis5_room1.webp" alt="Theasis 5 photo 3">
+          </button>
+          <button class="gallery-item" data-index="3" type="button">
+            <img src="assets/images/theasis5_room2.webp" alt="Theasis 5 photo 4">
+          </button>
+          <button class="gallery-item" data-index="4" type="button">
+            <img src="assets/images/theasis5_room3.webp" alt="Theasis 5 photo 5">
+          </button>
+          <button class="gallery-item" data-index="5" type="button">
+            <img src="assets/images/theasis5_room4.webp" alt="Theasis 5 photo 6">
+          </button>
+          <button class="gallery-item" data-index="6" type="button">
+            <img src="assets/images/theasis5_bathroom.webp" alt="Theasis 5 photo 7">
+          </button>
+          <button class="gallery-item" data-index="7" type="button">
+            <img src="assets/images/theasis5_terrace.webp" alt="Theasis 5 photo 8">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="amenities">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="amenKicker">COMFORT</span>
+          <h2 data-i18n="amenTitle">Everything you need for an easy stay</h2>
+        </div>
+        <div class="amenities-grid">
+          <article class="amenity-card"><span>👥</span><div><strong data-i18n="persons">Guests</strong><small data-i18n="guests">Up to 3 guests</small></div></article>
+          <article class="amenity-card"><span>🛏️</span><div><strong data-i18n="sleep">Sleeping</strong><small data-i18n="sleepText"></small></div></article>
+          <article class="amenity-card"><span>🚿</span><div><strong data-i18n="bath">Private bathroom</strong><small data-i18n="bathText"></small></div></article>
+          <article class="amenity-card"><span>☕</span><div><strong data-i18n="kitchen">Kitchenette</strong><small data-i18n="kitchenText"></small></div></article>
+          <article class="amenity-card"><span>📍</span><div><strong data-i18n="locationText"></strong><small>Neos Marmaras</small></div></article>
+          <article class="amenity-card"><span>🌅</span><div><strong data-i18n="outdoorText"></strong><small>Sea view</small></div></article>
+          <article class="amenity-card"><span>🅿️</span><div><strong data-i18n="parkingText"></strong><small>On site</small></div></article>
+          <article class="amenity-card"><span>📶</span><div><strong data-i18n="wifiText"></strong><small>Included</small></div></article>
+          <article class="amenity-card"><span>❄️</span><div><strong data-i18n="airText"></strong><small>Comfort</small></div></article>
+          <article class="amenity-card"><span>📺</span><div><strong data-i18n="tvText"></strong><small>Streaming</small></div></article>
+          <article class="amenity-card"><span>🔇</span><div><strong data-i18n="soundText"></strong><small>Privacy</small></div></article>
+
+          <article class="amenity-card">
+            <span>🌿</span>
+            <div><strong data-i18n="allergyText"></strong><small>THEASIS 5</small></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <span class="eyebrow" data-i18n="ctaKicker">PLAN YOUR STAY</span>
+        <h2 data-i18n="ctaTitle">Choose your dates</h2>
+        <p data-i18n="ctaText">Return to the main THEASIS page to check availability for this studio.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="index.html#theasis5-availability" data-i18n="book">Check this studio</a>
+          <a class="btn btn-ghost" href="theasis4.html" data-i18n="other">See the other studio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="sticky">
+    <a class="book" href="index.html#theasis5-availability" data-i18n="book">Check this studio</a>
+    <a class="back-mini" href="index.html#studios">THEASIS</a>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close">×</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+    <img id="lbImage" src="" alt="">
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next">›</button>
+    <div class="lb-count" id="lbCount"></div>
+  </div>
+
+  <script>
+    const translations = {"en": {"back": "Back to THEASIS", "availability": "Check availability", "gallery": "Gallery", "amenities": "Amenities", "heroKicker": "THEASIS · NEOS MARMARAS", "studioLabel": "Luxury Studio with Sea View", "guests": "Up to 3 guests", "sea": "Sea view", "terrace": "Private outdoor space", "wifi": "Free Wi-Fi", "parking": "Free parking", "introKicker": "THE STUDIO", "introTitle": "A calm base above Neos Marmaras", "galleryKicker": "THE SPACE", "galleryTitle": "See the studio in detail", "galleryText": "Open any photo for a larger view.", "amenKicker": "COMFORT", "amenTitle": "Everything you need for an easy stay", "ctaKicker": "PLAN YOUR STAY", "ctaTitle": "Choose your dates", "ctaText": "Return to the main THEASIS page to check availability for this studio.", "book": "Check this studio", "other": "See the other studio", "close": "Close", "prev": "Previous", "next": "Next", "score": "Facilities review score", "persons": "Guests", "sleep": "Sleeping", "bath": "Private bathroom", "kitchen": "Kitchenette", "sleepText": "Comfortable main bed + sofa bed", "bathText": "Shower, toiletries & hairdryer", "kitchenText": "Coffee machine, stovetop, microwave & refrigerator", "locationText": "Quiet setting close to the centre of Neos Marmaras", "outdoorText": "Furnished balcony / terrace with sea views", "parkingText": "Free private parking on site", "wifiText": "Free Wi-Fi", "airText": "Air conditioning & heating", "tvText": "Flat-screen TV with streaming", "soundText": "Soundproofing & private entrance", "familyText": "Family friendly", "allergyText": "Allergy-friendly features"}, "ro": {"back": "Înapoi la THEASIS", "availability": "Verifică disponibilitatea", "gallery": "Galerie", "amenities": "Facilități", "heroKicker": "THEASIS · NEOS MARMARAS", "studioLabel": "Studio de lux cu vedere la mare", "guests": "Până la 3 oaspeți", "sea": "Vedere la mare", "terrace": "Spațiu exterior privat", "wifi": "Wi-Fi gratuit", "parking": "Parcare gratuită", "introKicker": "STUDIOUL", "introTitle": "Un loc liniștit deasupra Neos Marmaras", "galleryKicker": "SPAȚIUL", "galleryTitle": "Descoperă studioul în detaliu", "galleryText": "Deschide orice fotografie pentru o vedere mai mare.", "amenKicker": "CONFORT", "amenTitle": "Tot ce ai nevoie pentru un sejur fără griji", "ctaKicker": "PLANIFICĂ SEJURUL", "ctaTitle": "Alege datele", "ctaText": "Revino pe pagina principală THEASIS pentru a verifica disponibilitatea acestui studio.", "book": "Verifică acest studio", "other": "Vezi celălalt studio", "close": "Închide", "prev": "Anterior", "next": "Următor", "score": "Scor facilități", "persons": "Oaspeți", "sleep": "Dormit", "bath": "Baie privată", "kitchen": "Chicinetă", "sleepText": "Pat principal confortabil + canapea extensibilă", "bathText": "Duș, articole de toaletă și uscător de păr", "kitchenText": "Aparat de cafea, plită, cuptor cu microunde și frigider", "locationText": "Zonă liniștită, aproape de centrul Neos Marmaras", "outdoorText": "Balcon / terasă mobilată cu vedere la mare", "parkingText": "Parcare privată gratuită la proprietate", "wifiText": "Wi-Fi gratuit", "airText": "Aer condiționat și încălzire", "tvText": "TV cu ecran plat și streaming", "soundText": "Izolare fonică și intrare privată", "familyText": "Potrivit pentru familii", "allergyText": "Caracteristici hipoalergenice"}, "el": {"back": "Πίσω στο THEASIS", "availability": "Έλεγχος διαθεσιμότητας", "gallery": "Φωτογραφίες", "amenities": "Παροχές", "heroKicker": "THEASIS · ΝΕΟΣ ΜΑΡΜΑΡΑΣ", "studioLabel": "Πολυτελές στούντιο με θέα στη θάλασσα", "guests": "Έως 3 άτομα", "sea": "Θέα στη θάλασσα", "terrace": "Ιδιωτικός εξωτερικός χώρος", "wifi": "Δωρεάν Wi-Fi", "parking": "Δωρεάν πάρκινγκ", "introKicker": "ΤΟ ΣΤΟΥΝΤΙΟ", "introTitle": "Ήρεμη βάση πάνω από τον Νέο Μαρμαρά", "galleryKicker": "Ο ΧΩΡΟΣ", "galleryTitle": "Δείτε το στούντιο με λεπτομέρεια", "galleryText": "Ανοίξτε οποιαδήποτε φωτογραφία για μεγαλύτερη προβολή.", "amenKicker": "ΑΝΕΣΗ", "amenTitle": "Όλα όσα χρειάζεστε για μια εύκολη διαμονή", "ctaKicker": "ΣΧΕΔΙΑΣΤΕ ΤΗ ΔΙΑΜΟΝΗ", "ctaTitle": "Επιλέξτε ημερομηνίες", "ctaText": "Επιστρέψτε στην κύρια σελίδα THEASIS για να ελέγξετε τη διαθεσιμότητα αυτού του στούντιο.", "book": "Έλεγχος στούντιο", "other": "Δείτε το άλλο στούντιο", "close": "Κλείσιμο", "prev": "Προηγούμενο", "next": "Επόμενο", "score": "Βαθμολογία παροχών", "persons": "Επισκέπτες", "sleep": "Ύπνος", "bath": "Ιδιωτικό μπάνιο", "kitchen": "Μικρή κουζίνα", "sleepText": "Άνετο κύριο κρεβάτι + καναπές-κρεβάτι", "bathText": "Ντους, προϊόντα περιποίησης και στεγνωτήρας μαλλιών", "kitchenText": "Καφετιέρα, εστίες, φούρνος μικροκυμάτων και ψυγείο", "locationText": "Ήσυχη τοποθεσία κοντά στο κέντρο του Νέου Μαρμαρά", "outdoorText": "Επιπλωμένο μπαλκόνι / βεράντα με θέα στη θάλασσα", "parkingText": "Δωρεάν ιδιωτικός χώρος στάθμευσης", "wifiText": "Δωρεάν Wi-Fi", "airText": "Κλιματισμός και θέρμανση", "tvText": "Smart TV με streaming", "soundText": "Ηχομόνωση και ιδιωτική είσοδος", "familyText": "Κατάλληλο για οικογένειες", "allergyText": "Υποαλλεργικά χαρακτηριστικά"}, "bg": {"back": "Назад към THEASIS", "availability": "Проверете наличността", "gallery": "Галерия", "amenities": "Удобства", "heroKicker": "THEASIS · НЕОС МАРМАРАС", "studioLabel": "Луксозно студио с морска гледка", "guests": "До 3 гости", "sea": "Морска гледка", "terrace": "Частно външно пространство", "wifi": "Безплатен Wi-Fi", "parking": "Безплатен паркинг", "introKicker": "СТУДИОТО", "introTitle": "Спокойна база над Неос Мармарас", "galleryKicker": "ПРОСТРАНСТВОТО", "galleryTitle": "Разгледайте студиото в детайли", "galleryText": "Отворете снимка за по-голям изглед.", "amenKicker": "КОМФОРТ", "amenTitle": "Всичко необходимо за приятен престой", "ctaKicker": "ПЛАНИРАЙТЕ ПРЕСТОЯ", "ctaTitle": "Изберете дати", "ctaText": "Върнете се на основната страница THEASIS, за да проверите наличността.", "book": "Проверете студиото", "other": "Вижте другото студио", "close": "Затвори", "prev": "Назад", "next": "Напред", "score": "Оценка за удобствата", "persons": "Гости", "sleep": "Спане", "bath": "Собствена баня", "kitchen": "Кухненски бокс", "sleepText": "Удобно основно легло + разтегателен диван", "bathText": "Душ, тоалетни принадлежности и сешоар", "kitchenText": "Кафемашина, котлони, микровълнова и хладилник", "locationText": "Тихо място близо до центъра на Неос Мармарас", "outdoorText": "Обзаведен балкон / тераса с морска гледка", "parkingText": "Безплатен частен паркинг", "wifiText": "Безплатен Wi-Fi", "airText": "Климатик и отопление", "tvText": "Телевизор със стрийминг", "soundText": "Шумоизолация и самостоятелен вход", "familyText": "Подходящо за семейства", "allergyText": "Хипоалергенни характеристики"}, "sr": {"back": "Nazad na THEASIS", "availability": "Proverite dostupnost", "gallery": "Galerija", "amenities": "Sadržaji", "heroKicker": "THEASIS · NEOS MARMARAS", "studioLabel": "Luksuzni studio sa pogledom na more", "guests": "Do 3 gosta", "sea": "Pogled na more", "terrace": "Privatan spoljašnji prostor", "wifi": "Besplatan Wi-Fi", "parking": "Besplatan parking", "introKicker": "STUDIO", "introTitle": "Mirna baza iznad Neos Marmarasa", "galleryKicker": "PROSTOR", "galleryTitle": "Pogledajte studio detaljno", "galleryText": "Otvorite bilo koju fotografiju za veći prikaz.", "amenKicker": "UDOBNOST", "amenTitle": "Sve što vam treba za bezbrižan boravak", "ctaKicker": "PLANIRAJTE BORAVAK", "ctaTitle": "Izaberite datume", "ctaText": "Vratite se na glavnu THEASIS stranicu da proverite dostupnost ovog studija.", "book": "Proverite studio", "other": "Pogledajte drugi studio", "close": "Zatvori", "prev": "Prethodno", "next": "Sledeće", "score": "Ocena sadržaja", "persons": "Gosti", "sleep": "Spavanje", "bath": "Privatno kupatilo", "kitchen": "Čajna kuhinja", "sleepText": "Udoban glavni krevet + sofa na razvlačenje", "bathText": "Tuš, toaletni pribor i fen", "kitchenText": "Aparat za kafu, ploča, mikrotalasna i frižider", "locationText": "Mirna lokacija blizu centra Neos Marmarasa", "outdoorText": "Namešten balkon / terasa sa pogledom na more", "parkingText": "Besplatan privatni parking", "wifiText": "Besplatan Wi-Fi", "airText": "Klima i grejanje", "tvText": "TV sa streamingom", "soundText": "Zvučna izolacija i privatan ulaz", "familyText": "Pogodno za porodice", "allergyText": "Hipoalergene karakteristike"}, "de": {"back": "Zurück zu THEASIS", "availability": "Verfügbarkeit prüfen", "gallery": "Galerie", "amenities": "Ausstattung", "heroKicker": "THEASIS · NEOS MARMARAS", "studioLabel": "Luxusstudio mit Meerblick", "guests": "Bis zu 3 Gäste", "sea": "Meerblick", "terrace": "Privater Außenbereich", "wifi": "Kostenloses WLAN", "parking": "Kostenlos parken", "introKicker": "DAS STUDIO", "introTitle": "Ein ruhiger Ausgangspunkt oberhalb von Neos Marmaras", "galleryKicker": "DER RAUM", "galleryTitle": "Das Studio im Detail", "galleryText": "Öffnen Sie ein Foto für eine größere Ansicht.", "amenKicker": "KOMFORT", "amenTitle": "Alles für einen entspannten Aufenthalt", "ctaKicker": "AUFENTHALT PLANEN", "ctaTitle": "Reisedaten wählen", "ctaText": "Zurück zur THEASIS-Hauptseite, um die Verfügbarkeit dieses Studios zu prüfen.", "book": "Studio prüfen", "other": "Anderes Studio ansehen", "close": "Schließen", "prev": "Zurück", "next": "Weiter", "score": "Bewertung der Ausstattung", "persons": "Gäste", "sleep": "Schlafen", "bath": "Eigenes Bad", "kitchen": "Kitchenette", "sleepText": "Komfortables Hauptbett + Schlafsofa", "bathText": "Dusche, Pflegeprodukte und Haartrockner", "kitchenText": "Kaffeemaschine, Kochfeld, Mikrowelle und Kühlschrank", "locationText": "Ruhige Lage nahe dem Zentrum von Neos Marmaras", "outdoorText": "Möblierter Balkon / Terrasse mit Meerblick", "parkingText": "Kostenloser Privatparkplatz", "wifiText": "Kostenloses WLAN", "airText": "Klimaanlage und Heizung", "tvText": "Flachbild-TV mit Streaming", "soundText": "Schallisolierung und privater Eingang", "familyText": "Familienfreundlich", "allergyText": "Allergikerfreundliche Ausstattung"}};
+    const pageData = {"unit": "Theasis 5", "hero": "assets/images/theasis5_hero.webp", "score": "10", "gallery": ["assets/images/theasis5_hero.webp", "assets/images/theasis5_room.webp", "assets/images/theasis5_room1.webp", "assets/images/theasis5_room2.webp", "assets/images/theasis5_room3.webp", "assets/images/theasis5_room4.webp", "assets/images/theasis5_bathroom.webp", "assets/images/theasis5_terrace.webp"], "copy": {"en": "A stylish sea-view studio for up to three guests, with a comfortable sleeping area, sofa bed, kitchenette, private bathroom and terrace. Quiet, bright and practical, with free parking, Wi-Fi and allergy-friendly features.", "ro": "Un studio elegant cu vedere la mare, pentru până la trei oaspeți, cu zonă de dormit confortabilă, canapea extensibilă, chicinetă, baie privată și terasă. Liniștit, luminos și practic, cu parcare gratuită, Wi-Fi și caracteristici hipoalergenice.", "el": "Φωτεινό και άνετο στούντιο με θέα στη θάλασσα, ιδιωτικό μπάνιο, μικρή κουζίνα και εξωτερικό χώρο. Σχεδιασμένο για έως τρία άτομα, συνδυάζει ηρεμία με εύκολη πρόσβαση στον Νέο Μαρμαρά.", "bg": "Светло и удобно студио с морска гледка, собствена баня, кухненски бокс и външно пространство. Подходящо за до трима гости, то съчетава спокойствие с лесен достъп до Неос Мармарас.", "sr": "Svetao i udoban studio sa pogledom na more, privatnim kupatilom, čajnom kuhinjom i spoljnim prostorom. Za do tri gosta, kombinuje mir sa lakim pristupom Neos Marmarasu.", "de": "Ein helles und komfortables Studio mit Meerblick, eigenem Bad, Kitchenette und privatem Außenbereich. Für bis zu drei Gäste verbindet es Ruhe mit guter Erreichbarkeit von Neos Marmaras."}};
+    let lang = localStorage.getItem('theasisLanguage') || 'en';
+    if (!translations[lang]) lang = 'en';
+
+    function applyLanguage(next) {
+      lang = translations[next] ? next : 'en';
+      localStorage.setItem('theasisLanguage', lang);
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+      document.getElementById('studioCopy').textContent = pageData.copy[lang] || pageData.copy.en;
+    }
+    applyLanguage(lang);
+
+    const images = pageData.gallery;
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lbImage');
+    const lbCount = document.getElementById('lbCount');
+    let imageIndex = 0;
+    let touchX = null;
+
+    function renderLightbox() {
+      lbImage.src = images[imageIndex];
+      lbCount.textContent = `${imageIndex + 1} / ${images.length}`;
+    }
+    function openLightbox(index) {
+      imageIndex = index;
+      renderLightbox();
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+    function next() { imageIndex = (imageIndex + 1) % images.length; renderLightbox(); }
+    function prev() { imageIndex = (imageIndex - 1 + images.length) % images.length; renderLightbox(); }
+
+    document.querySelectorAll('.gallery-item').forEach(btn => btn.addEventListener('click', () => openLightbox(Number(btn.dataset.index))));
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    document.getElementById('lbNext').addEventListener('click', next);
+    document.getElementById('lbPrev').addEventListener('click', prev);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+    lightbox.addEventListener('touchstart', e => touchX = e.changedTouches[0].clientX, {passive:true});
+    lightbox.addEventListener('touchend', e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 45) dx < 0 ? next() : prev();
+      touchX = null;
+    }, {passive:true});
+  </script>
+</body>
+</html>
