@@ -2801,6 +2801,69 @@
       }
     }
 
+
+    /* WEBSITE PROMO */
+    .website-promo {
+      background: #f1eadc;
+      border-top: 1px solid rgba(23,63,53,.10);
+      border-bottom: 1px solid rgba(23,63,53,.10);
+      padding: 30px 0;
+    }
+    .website-promo-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .website-promo-copy strong {
+      display: block;
+      color: var(--green-950);
+      font-size: clamp(1.35rem, 3vw, 2.15rem);
+      line-height: 1.08;
+      letter-spacing: -.025em;
+    }
+    .website-promo-copy span {
+      display: block;
+      margin-top: 7px;
+      color: #64716c;
+      font-size: .82rem;
+    }
+    .website-promo-btn {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: #25D366;
+      color: #0b2c1b;
+      font-weight: 900;
+      font-size: .84rem;
+      box-shadow: 0 10px 24px rgba(37,211,102,.20);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .website-promo-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(37,211,102,.26);
+    }
+    @media (max-width: 759px) {
+      .website-promo {
+        padding: 24px 0;
+      }
+      .website-promo-inner {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .website-promo-copy strong {
+        font-size: 1.6rem;
+      }
+      .website-promo-btn {
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -3636,6 +3699,23 @@
       </div>
     </section>
   </main>
+
+
+  <section class="website-promo" aria-label="Website design enquiry">
+    <div class="wrap website-promo-inner">
+      <div class="website-promo-copy">
+        <strong>Want a website like this?</strong>
+        <span>Let’s talk about a website for your accommodation or business.</span>
+      </div>
+      <a
+        class="website-promo-btn"
+        href="https://wa.me/40755687296?text=Hello%21%20I%20saw%20the%20THEASIS%20website%20and%20I%27m%20interested%20in%20a%20website%20like%20this%20for%20my%20accommodation%20or%20business.%20I%20would%20like%20more%20information."
+        target="_blank"
+        rel="noopener"
+        aria-label="Ask about a website on WhatsApp"
+      >Contact on WhatsApp</a>
+    </div>
+  </section>
 
   <footer>
     <div class="wrap footer-inner">
